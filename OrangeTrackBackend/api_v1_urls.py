@@ -13,10 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include('OrangeTrackBackend.api_v1_urls'))
+    path('auth/', include('user.auth_urls')),
+    path('user/', include('user.urls')),
 ]

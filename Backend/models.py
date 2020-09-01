@@ -7,18 +7,11 @@ class User(AbstractUser):
     nick_name = models.CharField(max_length=255, blank=True, null=True)
     password_hint = models.CharField(max_length=255, blank=True, null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
-    apt_suite = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255, blank=True, null=True)
     state = models.CharField(max_length=255)
     zip_code = models.CharField(max_length=255, blank=True, null=True)
     email = models.CharField(max_length=255, unique=True)
     phone = models.CharField(max_length=255, blank=True, null=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    union = models.CharField(max_length=255, blank=True, null=True)
-    website = models.CharField(max_length=255, blank=True, null=True)
-    linkedin = models.CharField(max_length=255, blank=True, null=True)
-    social_media = models.CharField(max_length=255, blank=True, null=True)
-    birthday = models.DateField(blank=True, null=True)
     user_type = models.CharField(max_length=2)
 
     # Customized User settings
@@ -46,6 +39,8 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    state = models.CharField(max_length=5)
+    is_government = models.BooleanField()
 
 
 class Site(models.Model):
@@ -59,7 +54,7 @@ class InventoryItem(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     sku = models.CharField(max_length=5)
-    price = models.IntegerField()
+    price = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
