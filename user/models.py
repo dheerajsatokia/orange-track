@@ -9,7 +9,7 @@ class User(AbstractUser):
     password_hint = models.CharField(max_length=255, blank=True, null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255, blank=True, null=True)
-    state = models.CharField(max_length=255)
+    state = models.CharField(max_length=255, blank=True, null=True)
     zip_code = models.CharField(max_length=255, blank=True, null=True)
     email = models.CharField(max_length=255, unique=True)
     phone = models.CharField(max_length=255, blank=True, null=True)
