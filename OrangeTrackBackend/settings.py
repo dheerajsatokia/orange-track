@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'drawings',
     'issue',
     'staff',
-
     'django_extensions',
     'rest_framework',
 ]
