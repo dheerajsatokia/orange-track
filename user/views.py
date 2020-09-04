@@ -15,8 +15,7 @@ class Authenticate(TokenObtainPairView):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     # serializer_class = user_serializer.UserSerializer
 
