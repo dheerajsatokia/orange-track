@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'drawings',
     'issue',
     'staff',
+    'site_manage',
 
     'django_extensions',
     'rest_framework',
