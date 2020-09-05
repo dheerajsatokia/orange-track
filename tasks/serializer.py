@@ -16,5 +16,5 @@ class TasksSerializer(serializers.ModelSerializer):
 class TaskRemarksSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskRemarks
-        field = '__all__'
+        fields = '__all__'
         read_only_fields = ('created_at', 'updated_at')
