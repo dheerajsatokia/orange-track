@@ -24,7 +24,7 @@ class PurchaseRecord(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE)
     purchase_type = models.CharField(max_length=10)
-    vendor = models.CharField(max_length=255)
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

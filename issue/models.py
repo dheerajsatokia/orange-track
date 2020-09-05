@@ -4,6 +4,7 @@ from user.models import User
 from project_management.models import Project
 from stages.models import Stage
 
+
 # Issue
 class Issue(models.Model):
     stage = models.ForeignKey(Stage, on_delete=models.CASCADE)
@@ -17,7 +18,8 @@ class Issue(models.Model):
 
 
 class IssueImage(models.ForeignKey):
-    image = models.ForeignKey(Issue, on_delete=models.CASCADE)
+    issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
+    image = models.FileField(upload_to='/image/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
