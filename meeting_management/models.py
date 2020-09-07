@@ -27,7 +27,7 @@ class Agenda(models.Model):
 
 
 class MeetingAttendees(models.Model):
-    # Automatically add creater to attandees
+    # Automatically add creator to attendees
     meeting = models.ForeignKey(Meeting, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=3)

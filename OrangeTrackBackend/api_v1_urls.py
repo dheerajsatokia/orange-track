@@ -18,4 +18,8 @@ from django.urls import path, include
 urlpatterns = [
     path('auth/', include('user.auth_urls')),
     path('user/', include('user.urls')),
+    path('project/', include('project_management.urls')),  # todo: create separate app for site
+    path('inventory/', include('inventory.urls')),
+    path('meeting/', include('meeting_management.urls')),
+    path('issue/', include('issue.urls'))
 ]
