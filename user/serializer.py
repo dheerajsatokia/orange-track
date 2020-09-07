@@ -53,11 +53,6 @@ class UserUpdateSerializer(UserSerializer):
     password = serializers.CharField(required=False)
 
 
-'''
-pbkdf2_sha256$216000$AHaSXhA5r6SJ$NYAzUAYQSOpu/j9qnj/aVW0gbnqXNyGxtOMbpQ0jobY=
-'''
-
-
 class OrganisationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organisation

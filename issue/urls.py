@@ -8,7 +8,7 @@ router = routers.SimpleRouter(trailing_slash=False)
 router.register(r'^image', views.IssueImageViewSet, basename='image')
 router.register(r'^remark', views.IssueRemarkViewSet, basename='remark')
 router.register(r'^notification', views.NotificationViewSet, basename='notification')
-router.register(r'^', views.IssueViewSet, basename='create')
+router.register(r'', views.IssueViewSet, basename='issue')
 
 
 urlpatterns = [
