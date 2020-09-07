@@ -20,3 +20,9 @@ class BlockViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = models.Block.objects.all()
     serializer_class = serializers.BlockSerializer
+
+
+class LevelViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = models.Level.objects.all()
+    serializer_class = serializers.LevelSerializer

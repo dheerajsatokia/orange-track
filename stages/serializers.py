@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from stages.models import Stage, Block, SubStage
+from stages.models import Stage, Block, SubStage,Level
 
 
 class StageSerializer(serializers.ModelSerializer):
@@ -21,3 +21,11 @@ class BlockSerializer(serializers.ModelSerializer):
         model = Block
         fields = '__all__'
         read_only_fields = ('created_at', 'updated_at')
+
+
+class LevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Level
+        fields = '__all__'
+        read_only_fields = ('created_at', 'updated_at')
+
