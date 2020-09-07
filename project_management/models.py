@@ -11,9 +11,3 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     state = models.CharField(max_length=5)
     is_government = models.BooleanField()
-
-
-class Site(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)

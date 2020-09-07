@@ -1,6 +1,7 @@
 from django.db import models
 
-from project_management.models import Project, Site
+from project_management.models import Project
+from site_manage.models import Site
 
 
 # Stages
