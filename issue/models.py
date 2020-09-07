@@ -17,9 +17,9 @@ class Issue(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
 
-class IssueImage(models.ForeignKey):
+class IssueImage(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='/image/')
+    image = models.FileField(upload_to='image/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

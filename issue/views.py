@@ -17,6 +17,9 @@ class IssueImageViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = issue_serializer.IssueImageSerializer
 
+    def get_queryset(self):
+        return IssueImage.objects.all()
+
 
 class IssueRemarkViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
