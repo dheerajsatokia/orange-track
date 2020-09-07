@@ -21,5 +21,8 @@ urlpatterns = [
     path('project/', include('project_management.urls')),  # todo: create separate app for site
     path('inventory/', include('inventory.urls')),
     path('meeting/', include('meeting_management.urls')),
-    path('issue/', include('issue.urls'))
+    path('issue/', include('issue.urls')),
+    path('staff/', include('staff.urls')),
+    path('drawings/', include('drawings.urls')),
+    path('site_manage/', include('site_manage.urls'))
 ]

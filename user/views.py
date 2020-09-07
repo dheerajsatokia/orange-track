@@ -18,6 +18,7 @@ class Authenticate(TokenObtainPairView):
 class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
+
     def get_queryset(self):
         return User.objects.all()
 
