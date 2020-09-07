@@ -7,5 +7,5 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
-        read_only = ('created_at', 'updated_at')
+        read_only_fields = ('created_at', 'updated_at')
 
