@@ -22,7 +22,7 @@ class User(AbstractUser):
         (user_constants.SITE_ENGINEER, 'Site Engineer'),
         (user_constants.SUB_CONTRACTOR, 'Sub Contractor')
     )
-    user_type = models.IntegerField(choices=Type_Choices)
+    user_type = models.IntegerField(choices=Type_Choices, default=user_constants.SUB_CONTRACTOR)
 
     # Customized User settings
     USERNAME_FIELD = "email"
