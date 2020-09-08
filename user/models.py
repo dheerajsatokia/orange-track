@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from OrangeTrackBackend.constants import user_constants
 
 
 # Create your models here.
@@ -13,7 +14,17 @@ class User(AbstractUser):
     zip_code = models.CharField(max_length=255, blank=True, null=True)
     email = models.CharField(max_length=255, unique=True)
     phone = models.CharField(max_length=255, blank=True, null=True)
-    user_type = models.CharField(max_length=2)
+    Type_Choices = (
+        (user_constants.SUPER_ADMIN, 'Super Admin'),
+        (user_constants.ADMIN, 'Admin'),
+        (user_constants.ARCHITECTURE, 'Architecture'),
+        (user_constants.PROJECT_MANAGER, 'Project Manager'),
+        (user_constants.SITE_ENGINEER, 'Site Engineer'),
+        (user_constants.SUB_CONTRACTOR, 'Sub Contractor'),
+        (user_constants.DEFAULT_USER, 'Sub Contractor')
+
+    )
+    user_type = models.IntegerField(choices=Type_Choices, default=user_constants.SUB_CONTRACTOR)
 
     # Customized User settings
     USERNAME_FIELD = "email"
