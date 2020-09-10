@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from OrangeTrackBackend.constants import user_constants
 
 
@@ -31,8 +32,13 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 
+class UserOrganisation(models.Model):
+    organization = models.ForeignKey('user.Organisation', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_admin = models.BooleanField(default=False)
+
+
 class Organisation(models.Model):
-    admin = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255, unique=True)
     brand = models.CharField(max_length=255, blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)
@@ -40,6 +46,7 @@ class Organisation(models.Model):
     phone = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    users = models.ManyToManyField(User, through=UserOrganisation)
 
     def __str__(self):
         return self.title

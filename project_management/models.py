@@ -1,6 +1,12 @@
 from django.db import models
 
-from user.models import Organisation
+from user.models import Organisation, User
+
+
+class ProjectUser(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey('project_management.Project', on_delete=models.CASCADE)
+    is_admin = models.BooleanField(default=False)
 
 
 class Project(models.Model):
@@ -11,3 +17,4 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     state = models.CharField(max_length=5)
     is_government = models.BooleanField()
+    users = models.ManyToManyField(to=User, through=ProjectUser)
