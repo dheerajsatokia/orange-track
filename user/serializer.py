@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.hashers import make_password
 
-from user.models import User, Organisation
+from user.models import User, Organisation, UserOrganisation
 
 
 class AuthenticationSerializer(TokenObtainPairSerializer):
@@ -59,3 +59,8 @@ class OrganisationSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only = ('created_at', 'updated_at')
 
+
+class UserOrganisationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserOrganisation
+        fields = '__all__'

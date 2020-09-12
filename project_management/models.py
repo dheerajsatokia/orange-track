@@ -10,7 +10,7 @@ class ProjectUser(models.Model):
 
 
 class Project(models.Model):
-    organisation = models.ForeignKey(Organisation, on_delete=models.SET_NULL, null=True)
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
