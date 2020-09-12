@@ -31,6 +31,30 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    @property
+    def is_super_admin(self):
+        return self.user_type == user_constants.SUPER_ADMIN
+
+    @property
+    def is_admin(self):
+        return self.user_type == user_constants.ADMIN
+
+    @property
+    def is_architecture(self):
+        return self.user_type == user_constants.ARCHITECTURE
+
+    @property
+    def is_project_manager(self):
+        return self.user_type == user_constants.PROJECT_MANAGER
+
+    @property
+    def is_site_engineer(self):
+        return self.user_type == user_constants.SITE_ENGINEER
+
+    @property
+    def is_sub_contractor(self):
+        return self.user_type == user_constants.SUB_CONTRACTOR
+
 
 class UserOrganisation(models.Model):
     organization = models.ForeignKey('user.Organisation', on_delete=models.CASCADE)

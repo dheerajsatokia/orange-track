@@ -1,16 +1,16 @@
+from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework_simplejwt.views import TokenObtainPairView
 
+from OrangeTrackBackend.constants import user_constants
+from OrangeTrackBackend.user_permissions import IsSuperAdmin
 # from .models import Organisation
 from . import models
 from . import serializer as user_serializer
-from .serializer import UserOrganisationSerializer
 from .models import User
-from OrangeTrackBackend.constants import user_constants
+from .serializer import UserOrganisationSerializer
 
 
 class Authenticate(TokenObtainPairView):
@@ -35,8 +35,21 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class OrganisationViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, IsSuperAdmin)
     serializer_class = user_serializer.OrganisationSerializer
+
+    def get_queryset(self):
+        if self.request.user.user_type == user_constants.SUPER_ADMIN:
+            return models.Organisation.objects.all()
+        elif self.request.user.user_type == [user_constants.ADMIN, user_constants.PROJECT_MANAGER]:
+            return models.Organisation.objects \
+                .select_related('admin') \
+                .filter(user=self.request.user)
+
+
+class Assign(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated, IsSuperAdmin)
+    serializer_class = UserOrganisationSerializer
 
     def get_queryset(self):
         if self.request.user.user_type == user_constants.SUPER_ADMIN:
@@ -45,10 +58,6 @@ class OrganisationViewSet(viewsets.ModelViewSet):
             return models.Organisation.objects \
                 .select_related('admin') \
                 .filter(user=self.request.user)
-
-
-class Assign(APIView):
-    serializer_class = UserOrganisationSerializer
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
