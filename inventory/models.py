@@ -36,3 +36,13 @@ class PurchaseRecord(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class VendorVisit(models.Model):
+    vendor = models.ForeignKey('inventory.Vendor', on_delete=models.CASCADE)
+    work_done = models.TextField()
+    time_taken = models.IntegerField()  # In minutes
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+
