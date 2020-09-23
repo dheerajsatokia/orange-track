@@ -25,7 +25,6 @@ class SiteViewSet(viewsets.ModelViewSet):
                 .select_related('site') \
                 .filter(user=self.request.user)
 
-
     # def get_queryset(self):
     # if project_manager:
     #     return models.Site.objects.filter(project=self.request.project)
@@ -34,6 +33,7 @@ class SiteViewSet(viewsets.ModelViewSet):
     # return models.SiteUser.objects \
     #     .select_related('site') \
     #     .filter(user=self.request.user)
+
 
 class Assign(APIView):
     # permission_classes = (IsAuthenticated,)
@@ -44,6 +44,3 @@ class Assign(APIView):
         if serializer.is_valid(raise_exception=True):
             return models.SiteUser.objects.create()
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
