@@ -5,10 +5,10 @@ from .models import User, Organisation, UserOrganisation
 admin.site.site_header = 'Orange Track'
 
 
-class UserOrgnisationAdmin(admin.ModelAdmin):
+class UserOrganisationAdmin(admin.ModelAdmin):
     list_display = ('organization', 'user', 'is_admin')
 
 
 admin.site.register(User)
 admin.site.register(Organisation)
-admin.site.register(UserOrganisation)
+admin.site.register(UserOrganisation, UserOrganisationAdmin)
