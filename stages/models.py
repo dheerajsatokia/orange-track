@@ -51,6 +51,9 @@ class ProgressEntry(models.Model):
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
     is_approved = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.block.title
+
 
 class ProgressInventoryEntry(models.Model):
     progress_entry = models.ForeignKey(ProgressEntry, on_delete=models.CASCADE)
@@ -59,6 +62,9 @@ class ProgressInventoryEntry(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey('user.User', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.inventory
 
 
 class ProgressEntryMedia(models.Model):

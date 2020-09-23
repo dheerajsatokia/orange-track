@@ -31,6 +31,9 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    def __str__(self):
+        return self.nick_name
+
     @property
     def is_super_admin(self):
         return self.user_type == user_constants.SUPER_ADMIN
@@ -60,6 +63,9 @@ class UserOrganisation(models.Model):
     organization = models.ForeignKey('user.Organisation', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_admin = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.organization.title
 
 
 class Organisation(models.Model):

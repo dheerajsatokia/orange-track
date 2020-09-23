@@ -8,6 +8,9 @@ class ProjectUser(models.Model):
     project = models.ForeignKey('project_management.Project', on_delete=models.CASCADE)
     is_admin = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.user.nick_name
+
 
 class Project(models.Model):
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
@@ -18,3 +21,6 @@ class Project(models.Model):
     state = models.CharField(max_length=5)
     is_government = models.BooleanField()
     users = models.ManyToManyField(to=User, through=ProjectUser)
+
+    def __str__(self):
+        return self.title
