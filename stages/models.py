@@ -31,6 +31,9 @@ class SubStageInventory(models.Model):
     sub_stage = models.ForeignKey(SubStage, on_delete=models.CASCADE)
     inventory_item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.sub_stage.title}- {self.inventory_item}"
+
 
 class Block(models.Model):
     sub_stage = models.ForeignKey(SubStage, on_delete=models.CASCADE)
@@ -57,7 +60,7 @@ class ProgressEntry(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.block.title}"
+        return f"{self.block.title} - {self.id}"
 
 
 class ProgressInventoryEntry(models.Model):
@@ -69,7 +72,7 @@ class ProgressInventoryEntry(models.Model):
     created_by = models.ForeignKey('user.User', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.inventory.name}"
+        return f"{self.progress_entry} - {self.inventory.name}"
 
 
 class ProgressEntryMedia(models.Model):
@@ -77,7 +80,7 @@ class ProgressEntryMedia(models.Model):
     progress_entry = models.ForeignKey(ProgressEntry, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.progress_entry.id}"
+        return f"{self.progress_entry}"
 
 
 class ProgressComment(models.Model):
