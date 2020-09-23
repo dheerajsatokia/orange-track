@@ -6,7 +6,7 @@ from .models import Project, ProjectUser
 class ProjectAdmin(admin.ModelAdmin):
     search_fields = ['title', 'organisation']
     list_display = ('title', 'description', 'state', 'is_government', 'created_at', 'updated_at', 'organisation')
-    fields = ('title', 'description', 'state', 'is_government', 'created_at', 'updated_at', 'organisation')
+    fields = ('title', 'description', 'state', 'is_government',  'organisation')
     # list_filter = ('user',)
 
 

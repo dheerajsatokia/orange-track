@@ -8,13 +8,13 @@ from .models import Stage, SubStage, Block, Level, ProgressEntry, ProgressInvent
 class StageAdmin(admin.ModelAdmin):
     search_fields = ['project', 'title']
     list_display = ('title', 'created_at', 'updated_at', 'project')
-    fields = ('title', 'created_at', 'updated_at', 'project')
+    fields = ('title', 'project')
 
 
 class SubStageAdmin(admin.ModelAdmin):
     search_fields = ['project']
-    list_display = ('stage', 'title', 'created_at', 'updated_at', 'project')
-    fields = ('stage', 'title', 'project')
+    list_display = ('title', 'stage', 'created_at', 'updated_at')
+    fields = ('stage', 'title', 'inventory')
     # list_filter = ('user',)
 
 

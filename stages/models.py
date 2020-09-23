@@ -21,18 +21,17 @@ class SubStage(models.Model):
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-
+    inventory = models.ManyToManyField(InventoryItem)
     def __str__(self):
         return f"{self.title}"
 
 
-class SubStageInventory(models.Model):
-    sub_stage = models.ForeignKey(SubStage, on_delete=models.CASCADE)
-    inventory_item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.sub_stage.title}- {self.inventory_item}"
+# class SubStageInventory(models.Model):
+#     sub_stage = models.ForeignKey(SubStage, on_delete=models.CASCADE)
+#     inventory_item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return f"{self.sub_stage.title}- {self.inventory_item}"
 
 
 class Block(models.Model):
