@@ -13,7 +13,7 @@ class Stage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
 
 class SubStage(models.Model):
@@ -24,7 +24,12 @@ class SubStage(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
+
+
+class SubStageInventory(models.Model):
+    sub_stage = models.ForeignKey(SubStage, on_delete=models.CASCADE)
+    inventory_item = models.ForeignKey(InventoryItem, on_delete=models.CASCADE)
 
 
 class Block(models.Model):
@@ -34,7 +39,7 @@ class Block(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
 
 class Level(models.Model):
@@ -44,7 +49,7 @@ class Level(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title}"
 
 
 class ProgressEntry(models.Model):
@@ -52,7 +57,7 @@ class ProgressEntry(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.block.title
+        return f"{self.block.title}"
 
 
 class ProgressInventoryEntry(models.Model):
@@ -64,12 +69,15 @@ class ProgressInventoryEntry(models.Model):
     created_by = models.ForeignKey('user.User', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.inventory
+        return f"{self.inventory.name}"
 
 
 class ProgressEntryMedia(models.Model):
     media = models.ImageField()
     progress_entry = models.ForeignKey(ProgressEntry, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.progress_entry.id}"
 
 
 class ProgressComment(models.Model):
@@ -78,3 +86,6 @@ class ProgressComment(models.Model):
     created_by = models.ForeignKey('user.User', on_delete=models.SET_NULL, null=True, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.progress_entry.id}"

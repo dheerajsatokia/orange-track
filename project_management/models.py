@@ -9,7 +9,7 @@ class ProjectUser(models.Model):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.nick_name
+        return f'{self.user.email} - {self.project}'
 
 
 class Project(models.Model):
@@ -23,5 +23,4 @@ class Project(models.Model):
     users = models.ManyToManyField(to=User, through=ProjectUser)
 
     def __str__(self):
-        return self.title
-
+        return f'{self.title}'
