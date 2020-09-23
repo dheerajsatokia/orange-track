@@ -32,7 +32,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.nick_name
+        return f'{self.email}'
 
     @property
     def is_super_admin(self):
@@ -79,4 +79,4 @@ class Organisation(models.Model):
     users = models.ManyToManyField(User, through=UserOrganisation)
 
     def __str__(self):
-        return self.title
+        return f'{self.title}'
