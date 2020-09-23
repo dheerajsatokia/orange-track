@@ -65,7 +65,7 @@ class UserOrganisation(models.Model):
     is_admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.organization.title
+        return f'{self.organization.title}-{self.user.email}'
 
 
 class Organisation(models.Model):
