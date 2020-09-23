@@ -3,7 +3,12 @@ from .models import User, Organisation, UserOrganisation
 
 # Register your models here.
 admin.site.site_header = 'Orange Track'
+
+
+class UserOrgnisationAdmin(admin.ModelAdmin):
+    list_display = ('organization', 'user', 'is_admin')
+
+
 admin.site.register(User)
 admin.site.register(Organisation)
 admin.site.register(UserOrganisation)
-
