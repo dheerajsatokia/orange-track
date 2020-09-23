@@ -16,6 +16,9 @@ class Issue(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.stage.title
+
 
 class IssueImage(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
@@ -23,15 +26,24 @@ class IssueImage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.image
+
 
 class IssueRemark(models.Model):
     remark = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.remark
+
 
 class Notification(models.Model):
     notification_message = models.TextField()
+
+    def __str__(self):
+        return self.notification_message
 
 
 class ProgressEntries(models.Model):

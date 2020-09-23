@@ -18,3 +18,4 @@ class Project(models.Model):
     state = models.CharField(max_length=5)
     is_government = models.BooleanField()
     users = models.ManyToManyField(to=User, through=ProjectUser)
+
